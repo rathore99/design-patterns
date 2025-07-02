@@ -1,0 +1,199 @@
+Design Pattern
+    SOLID Principles
+
+    common archetictural Pattern
+    Gangs of four
+    Robert C martin
+
+    S -- Single responsibility Principle
+    O Open Close Principle
+    L Liscov Substitute Principle
+    I - Interface Segration Principle
+    D - Dependency Inversion Principle
+    ------------------------------------
+    Code Readability
+    Manageable
+    DRY
+    easy to understand
+    code maintaince\
+    less fragile and easier to manage overtime
+    extensible, testable
+    ----------------------------------
+    set of rules
+    class GeneratorApplication -- camelCase  java
+    class generator_application  -- snake_case python
+    ---------------------------------------------
+    SRP -- Single responsibility Principle
+    one and only one responsibility
+    OR
+    one and only one reason to change
+    ----------------------------------
+
+    OCP Open CLose Principle
+    Open for extension, close for modification
+
+    Liscov Substitute Principle:
+    subtypes must be substitutable for thier base type
+    class Bird
+        void fly()
+
+    Class Sparrow extends Bird
+
+    class Penguine extends Bird
+        fly() --- exception flying not supported
+
+   Bird bird = new Penguine()
+   bird.fly()?
+
+Class Worker
+    eat()
+    work()
+Class Human extends Worker
+Class Robot extends Worker
+interface Bird
+interface FlyingBird extends Bird{
+    void fly()
+}
+
+class Sparrow implements FlyingBird
+{
+
+}
+class Penguine implements Bird{
+
+}
+
+Bird bird = new Sparrow();
+bird.fly();
+---------------------------
+4. Interface Segration Principle
+  No client should be forced to depend on interfaces it does not use.
+
+  Interface -- contract
+  methods interface will provide
+  ATM interface --> pin change(). withdrawal(). check balance(), chequeBookGenerator()
+  ATM interface -->  PIn chage, withdrawal, check balance,
+  contract --> two parties agrees terms
+  Interface worker
+      eat()
+      work()
+
+      class Human implements Worker P{
+        eat(){
+
+        }
+        work(){
+
+        }
+      }
+
+      class Robot implements Worker{
+        work(){
+
+        }
+      }
+---------
+interface Workable{
+    work()
+}
+interface eatable(){
+    eat();
+}
+
+class Human implements Workable, Eatable{
+
+}
+
+class Robot implements Workable{
+
+}
+--------------------
+5. Dependency Inversion Principle
+Depend on Abstractions, not on concrete implementation
+
+Class LightBulb{
+    void turnOn(){
+
+    }
+}
+Class Switchs {
+     LightBulb bulb = new LightBulb();
+     Led led = new Led()
+     void operate(){
+        bulb.turnOn();
+     }
+
+     led.turnOn();
+}
+
+------------------------------
+interface Switchable{
+    void turnOn();
+}
+
+class LightBulb implements Switchable{
+    void turnOn(){
+        sout("Light on")
+    }
+}
+Class LedBuld implements Switchable{
+
+}
+class Switch{
+    private List<Switchable> device;
+    public add(Switchable device){
+            devices.add(device);
+    }
+
+    public void operate(){
+        for(Switchable device: devices){
+            device.turnOn();
+        }
+    }
+}
+
+
+----
+Creational Design Pattern
+For creating object
+Singleton
+Factory
+Builder
+Prototype
+--------------------
+Singleton --> only one
+there may be requirements where u only need one object.
+
+class Config{
+    private int value ;
+    private static Config obj ;
+    private Config(){
+
+    }
+    public static Config getConfig(){
+        synchronized(Config.class){
+        if(obj == null){
+            obj = new Config();
+        }
+        }
+        return obj;
+    }
+
+}
+
+inheritance final
+memebers private
+public getter and setter.
+static method to access instance;
+
+restrict user from creating more than one object.
+
+new Config();
+----------------------------------------------------
+
+Factory Design Pattern
+
+creates object without exposing tthe instantiation logic.
+
+create otification and send to user
+sms, email ,push n…
